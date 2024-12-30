@@ -1,0 +1,9 @@
+Django
+django-cors-headers
+djangorestframework
+pymupdf
+openai
+pillow
+pytesseract
+requests
+beautifulsoup4
