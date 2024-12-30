@@ -82,7 +82,9 @@ function generateScript() {
                 const outputDiv = document.getElementById('script-output');
                 outputDiv.innerHTML = `
                     <h3>Generated Script:</h3>
-                    <pre>${data.script}</pre>
+                    <pre style="white-space: pre-wrap; word-wrap: break-word; word-break: break-word; max-width: 100%; overflow-wrap: break-word;">
+                        ${data.script}
+                    </pre>
                 `;
                 outerDiv.classList.remove('hidden');
                 const saveButton = document.getElementById('save-script');
