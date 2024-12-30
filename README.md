@@ -1,5 +1,11 @@
 Clipwise project
 <img width="1440" alt="Screenshot 2024-12-31 at 2 15 54 AM" src="https://github.com/user-attachments/assets/058f399d-697d-4479-b06f-172fcc93adc8" />
+<img width="1440" alt="Screenshot 2024-12-27 at 5 42 02 PM" src="https://github.com/user-attachments/assets/1777d5b4-da45-4543-8626-6e186046b0d3" />
+<img width="1425" alt="image" src="https://github.com/user-attachments/assets/6062e537-5ff7-4bfb-9134-050a6705f626" />
+<img width="1425" alt="Screenshot 2024-12-31 at 2 47 59 AM" src="https://github.com/user-attachments/assets/c658c9b2-9135-4829-98af-517b5771ebdd" />
+<img width="1425" alt="Screenshot 2024-12-31 at 2 48 45 AM" src="https://github.com/user-attachments/assets/4ca45255-3c91-4bc5-8445-339718e8f2ef" />
+
+
 
 Setup for the project
 1. Clone the github repository
