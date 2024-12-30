@@ -1,5 +1,5 @@
 Clipwise project
-
+<img width="1440" alt="Screenshot 2024-12-31 at 2 15 54 AM" src="https://github.com/user-attachments/assets/058f399d-697d-4479-b06f-172fcc93adc8" />
 
 Setup for the project
 1. Clone the github repository
@@ -13,6 +13,7 @@ Setup for the project
    
    ->brew install tesseract
    ->which tesseract (if the path is /usr/local/bin/tesseract)
+
    ->add the path /user/local/bin to the file using
 
    ->nano ~/.zshrc
