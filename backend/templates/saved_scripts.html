@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saved Scripts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a202c',
+                        secondary: '#2d3748',
+                        accent: '#4fd1c5',
+                    },
+                },
+            },
+        };
+    </script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+
+    <div class="max-w-4xl mx-auto p-6">
+        <h1 class="text-2xl font-bold text-center mb-4">Saved Scripts</h1>
+
+        <div class="bg-white p-6 shadow rounded-lg mb-4">
+            {% if scripts %}
+                <div class="script-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {% for script in scripts %}
+                        <div class="script-card bg-gray-100 p-4 rounded-lg shadow">
+                            <h3 class="text-xl font-semibold mb-2">{{ script.prompt }}</h3>
+                            <p class="mt-2 text-gray-700">{{ script.content }}</p>
+                            <p><strong>External Link:</strong> <a href="{{ script.external_link }}" target="_blank" class="text-teal-500">{{ script.external_link }}</a></p>
+                            <p class="text-sm text-gray-500 mt-2">Created at: {{ script.created_at }}</p>
+                            <!-- Escaping single quotes -->
+                            <button onclick="downloadPDF(`{{ script.prompt }}`, `{{ script.content }}`)" class="text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-md mt-4 inline-block">
+                                Download PDF
+                            </button>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>No saved scripts found.</p>
+            {% endif %}
+        </div>
+
+        <button onclick="window.location.href='/'" class="bg-accent text-white py-2 px-4 rounded hover:bg-teal-500">Back to Script Generator</button>
+    </div>
+
+</body>
+</html>
+
+<script>
+    function downloadPDF(prompt, content) {
+        const { jsPDF } = window.jspdf;
+
+        // Create new jsPDF instance
+        const doc = new jsPDF();
+
+        // Add content to the PDF
+        doc.text(content, 10, 10);
+
+        // Define a short filename using the first 3 words of the prompt
+        const promptWords = prompt.split(/\s+/).slice(0, 3).join(' ');
+        const pdfFileName = promptWords ? `${promptWords}.pdf` : 'generated-script.pdf';
+
+        // Save the PDF with the defined filename
+        doc.save(pdfFileName);
+    }
+</script>

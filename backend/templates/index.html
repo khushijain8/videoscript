@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Script Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',  // Enable dark mode via class
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a202c',
+                        secondary: '#2d3748',
+                        accent: '#4fd1c5',
+                    },
+                },
+            },
+        };
+    </script>
+</head>
+<body class="bg-gray-900 text-white">
+    {% include 'new_script_button.html' %}
+    <div class="max-w-4xl mx-auto my-12 p-6">
+        <h1 class="text-2xl font-bold text-center my-12 mb-6">AI Script Generator</h1>
+
+        <!-- Input Section -->
+        <div class="bg-gray-800 p-6 shadow rounded-lg mb-8">
+            <label for="prompt" class="block text-lg font-medium mb-4">Enter your prompt:</label>
+            <textarea id="prompt" rows="3" class="w-full border rounded-md p-3 mb-6 bg-gray-700 text-white placeholder-gray-400" placeholder="Type your prompt here..."></textarea>
+
+            <!-- File Upload Form -->
+            <form id="upload-file" action="/" method="post" enctype="multipart/form-data">
+                {% csrf_token %} 
+                <label for="file-upload" class="block text-lg font-medium mb-4">Upload Files:</label>
+                <input id="file-upload" type="file" name="file" class="w-full mb-6 bg-gray-700 text-white placeholder-gray-400" accept=".txt,.pdf,image/*">
+            </form>
+
+            {% if message %}
+            <div id="message-box" class="mt-6 p-4 bg-gray-700 rounded-md">
+                <h2 class="text-lg font-semibold mb-2">{{ message }}</h2>
+                {% if text %}
+                <pre class="mt-2 text-sm break-words whitespace-pre-wrap" style="word-wrap: break-word; overflow-wrap: break-word; max-height: 200px; overflow-y: auto;">
+                    {{ text }}
+                </pre>
+                {% endif %}
+            </div>
+            {% endif %}
+
+            <!-- External Links -->
+            <label for="external-link" class="block text-lg font-medium mb-4 mt-6">External Link:</label>
+            <input id="external-link" type="url" class="w-full border rounded-md p-3 mb-6 bg-gray-700 text-white placeholder-gray-400" placeholder="Enter a URL">
+
+            <button id="generate-btn" onclick="generateScript()" class="bg-accent text-white py-3 px-6 rounded hover:bg-teal-500">Generate Script</button>
+        </div>
+
+        <!-- Display Generated Script -->
+        <div id="generated-script" class="bg-gray-800 p-6 shadow rounded-lg hidden">
+            <h2 class="text-lg font-semibold mb-4">Generated Script</h2>
+            <div id="script-output" class="bg-gray-700 p-4 rounded text-white mb-6"></div>
+            <div class="mt-6 flex gap-4">
+                <button id="save-script" class="bg-green-500 text-white py-3 px-6 rounded hover:bg-green-600">Save Script</button>
+                <button id="download-script" class="bg-blue-500 text-white py-3 px-6 rounded hover:bg-blue-600">Download as PDF</button>
+            </div>
+        </div>
+        
+    </div>
+      
+    {% load static %}
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>

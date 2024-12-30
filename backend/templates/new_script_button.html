@@ -1,0 +1,35 @@
+<div class="fixed top-5 right-5 sm:right-5 sm:top-5 flex flex-col gap-4 z-50 sm:flex-row sm:justify-end justify-center items-center w-full sm:w-auto mx-4">
+    <button 
+        id="new-script-btn" 
+        onclick="newScript()" 
+        class="bg-accent text-white py-2 px-4 rounded-md hover:bg-teal-500 shadow-md text-sm sm:text-base lg:text-lg w-[25%] sm:w-auto text-center mx-auto"
+    >
+        New Script
+    </button>
+    <button 
+        id="saved-script-btn" 
+        onclick="window.location.href='/saved_scripts/'" 
+        class="bg-accent text-white py-2 px-4 rounded-md hover:bg-teal-500 shadow-md text-sm sm:text-base lg:text-lg w-[25%] sm:w-auto text-center mx-auto"
+    >
+        Saved Scripts
+    </button>
+</div>
+
+
+
+<script>
+    function newScript() {
+        // Hide the message box if it exists
+        var messageBox = document.getElementById('message-box');
+        if (messageBox) {
+            messageBox.style.display = 'none';
+        }
+
+        // Reset the input fields
+        document.getElementById('prompt').value = ''; 
+        document.getElementById('external-link').value = '';
+
+        // Hide the generated script section
+        document.getElementById('generated-script').classList.add('hidden'); 
+    }
+</script>
